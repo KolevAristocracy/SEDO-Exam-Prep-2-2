@@ -6,8 +6,8 @@ pipeline{
     stages{
         stage("Restore Dependencies"){
             when {
-                AnyOf {
-                    branch 'main'
+                expression {
+                    return env.GIT_BRANCH == 'origin/main'
                 }
                 
             }
@@ -18,8 +18,8 @@ pipeline{
 
         stage("Build the app"){
             when {
-                AnyOf {
-                    branch 'main'
+                expression {
+                    return env.GIT_BRANCH == 'origin/main'
                 }
             }
             steps{
@@ -29,8 +29,8 @@ pipeline{
             
         stage("Run Tests"){
             when {
-                AnyOf {
-                    branch 'main'
+                expression {
+                    return env.GIT_BRANCH == 'origin/main'
                 }
             }
             steps{
